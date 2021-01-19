@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Marca1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Modelo" Relationship="Self.FK__Modelo__Id_Marca__1A14E395" FromRole="Marca" ToRole="Modelo" />
+  </EntityType>
+  <EntityType Name="Modelo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Modelo1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Marca" Type="Int32" />
+    <NavigationProperty Name="Marca" Relationship="Self.FK__Modelo__Id_Marca__1A14E395" FromRole="Modelo" ToRole="Marca" />
+    <NavigationProperty Name="precios" Relationship="Self.FK__precios__Id_Mode__1CF15040" FromRole="Modelo" ToRole="precios" />
+  </EntityType>
+  <EntityType Name="precios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Costo" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Precio" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Utilidad" Type="Decimal" Precision="7" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Id_Modelo" Type="Int32" />
+    <NavigationProperty Name="Modelo" Relationship="Self.FK__precios__Id_Mode__1CF15040" FromRole="precios" ToRole="Modelo" />
+  </EntityType>
+  <Association Name="FK__Modelo__Id_Marca__1A14E395">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Modelo">
+        <PropertyRef Name="Id_Marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__precios__Id_Mode__1CF15040">
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="0..1" />
+    <End Role="precios" Type="Self.precios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="precios">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AutosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Marca" EntityType="Self.Marca" />
+    <EntitySet Name="Modelo" EntityType="Self.Modelo" />
+    <EntitySet Name="precios" EntityType="Self.precios" />
+    <AssociationSet Name="FK__Modelo__Id_Marca__1A14E395" Association="Self.FK__Modelo__Id_Marca__1A14E395">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Modelo" EntitySet="Modelo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__precios__Id_Mode__1CF15040" Association="Self.FK__precios__Id_Mode__1CF15040">
+      <End Role="Modelo" EntitySet="Modelo" />
+      <End Role="precios" EntitySet="precios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

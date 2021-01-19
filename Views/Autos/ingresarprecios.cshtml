@@ -1,0 +1,35 @@
+﻿@model Prueba.Models.Wrapper
+@{
+    ViewBag.Title = "ingresarprecios";
+}
+
+<h2>ingresarprecios</h2>
+
+@using (Html.BeginForm("ingresarprecios", "Autos", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                @Html.LabelFor(p => p.Precios.Costo)
+                @Html.TextBoxFor(p => p.Precios.Costo, "", new { @class = "from-control" })
+                @Html.ValidationMessageFor(p => p.Precios.Costo, null, new { @class = "red" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.Precios.Precio)
+                @Html.TextBoxFor(p => p.Precios.Precio, "", new { @class = "from-control" })
+                @Html.ValidationMessageFor(p => p.Precios.Precio, null, new { @class = "red" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.Precios.Id_Modelo)
+                @Html.DropDownListFor(p => p.Precios.Id_Modelo, new SelectList(Model.Modelos, "Id", "Modelo1"), "Seleccione Modelo")
+                @Html.ValidationMessageFor(p => p.Precios.Id_Modelo, null, new { @class = "red" })
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div>
+
+        <input type="submit" class="bg-primary" value="ingresar" />
+
+    </div>
+}

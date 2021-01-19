@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AutosModelStoreContainer" CdmEntityContainer="AutosEntities">
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="AutosModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Marca1" ColumnName="Marca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelo">
+      <EntityTypeMapping TypeName="AutosModel.Modelo">
+        <MappingFragment StoreEntitySet="Modelo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Modelo1" ColumnName="Modelo" />
+          <ScalarProperty Name="Id_Marca" ColumnName="Id_Marca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="precios">
+      <EntityTypeMapping TypeName="AutosModel.precios">
+        <MappingFragment StoreEntitySet="precios">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Utilidad" ColumnName="Utilidad" />
+          <ScalarProperty Name="Id_Modelo" ColumnName="Id_Modelo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

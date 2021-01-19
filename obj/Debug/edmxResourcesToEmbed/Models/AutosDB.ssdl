@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marca" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Modelo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Modelo" Type="varchar" MaxLength="20" />
+    <Property Name="Id_Marca" Type="int" />
+  </EntityType>
+  <EntityType Name="precios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Costo" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Precio" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Utilidad" Type="decimal" Precision="7" Scale="2" StoreGeneratedPattern="Computed" />
+    <Property Name="Id_Modelo" Type="int" />
+  </EntityType>
+  <Association Name="FK__Modelo__Id_Marca__1A14E395">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Modelo">
+        <PropertyRef Name="Id_Marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__precios__Id_Mode__1CF15040">
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="0..1" />
+    <End Role="precios" Type="Self.precios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="precios">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AutosModelStoreContainer">
+    <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="precios" EntityType="Self.precios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Modelo__Id_Marca__1A14E395" Association="Self.FK__Modelo__Id_Marca__1A14E395">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Modelo" EntitySet="Modelo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__precios__Id_Mode__1CF15040" Association="Self.FK__precios__Id_Mode__1CF15040">
+      <End Role="Modelo" EntitySet="Modelo" />
+      <End Role="precios" EntitySet="precios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,34 @@
+﻿@model Prueba.Models.Wrapper
+
+@{
+    ViewBag.Title = "ingresarmodelo";
+}
+
+<h2>ingresarmodelo</h2>
+
+@using (Html.BeginForm("ingresarmodelo", "Autos", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                @Html.LabelFor(m => m.Modelo.Modelo)
+                @Html.TextBoxFor(m => m.Modelo.Modelo, "", new { @class = "from-control" })
+                @Html.ValidationMessageFor(m => m.Modelo.Modelo, null, new { @class = "red" })
+            </div>
+ 
+            <div>
+                @Html.LabelFor(m => m.Modelo.Id_Marca)
+                @Html.DropDownListFor(m => m.Modelo.Id_Marca, new SelectList(Model.Marcas, "Id", "Marca1"), "Seleccione Marca")
+                @Html.ValidationMessageFor(m => m.Modelo.Id_Marca, null, new { @class = "red" })
+            </div>
+
+
+        </div>
+    </div>
+    <br/>
+    <div>
+
+        <input type="submit" class="bg-primary" value="ingresar" />
+
+    </div>
+}

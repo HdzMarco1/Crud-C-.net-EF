@@ -1,0 +1,41 @@
+﻿@model List<Prueba.Models.Mostrar>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>DATOS</h2>
+
+<div class="row" style="text-align:right">
+    <a href="~/Autos/ingresar" class="btn btn-primary">Insertar</a>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <tr>
+                <td>Marca</td>
+                <td>Modelo</td>
+                <td>Costo</td>
+                <td>Precio</td>
+                <td>Utilidad</td>
+            </tr>
+
+            @foreach (var oFinal in Model)
+            {
+        <tr>
+            <td>@oFinal.Marca</td>
+            <td>@oFinal.Modelo</td>
+            <td>@oFinal.Costo</td>
+            <td>@oFinal.Precio</td>
+            <td>@oFinal.Utilidad</td>
+            <td>
+                <a class="btn btn-primary" href="~/Autos/Editar/@oFinal.idd">Editar</a>
+                <a class="btn btn-danger" href="~/Autos/Eliminar">Eliminar</a>
+            </td>
+        </tr>
+            }
+        </table>
+
+    </div>
+</div>
+

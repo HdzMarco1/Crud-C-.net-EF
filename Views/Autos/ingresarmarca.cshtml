@@ -1,0 +1,27 @@
+﻿@model Prueba.Models.IngrearMarca
+@{
+    ViewBag.Title = "ingresarmarca";
+}
+
+<h2>ingresar</h2>
+
+@using (Html.BeginForm("ingresarmarca", "Autos", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                @Html.LabelFor(ma => ma.Marca)
+                @Html.TextBoxFor(ma => ma.Marca, "", new { @class = "from-control" })
+                @Html.ValidationMessageFor(ma => ma.Marca, null, new { @class = "red" })
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+
+        <input type="submit" class="bg-primary" value="ingresar" />
+
+    </div>
+
+}
+
